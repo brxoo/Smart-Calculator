@@ -1,11 +1,12 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.projetocalculadora.Calculadora;
 
-public class TestCalculadora {
+public class TesteCalculadora {
 	
 	double num1 = 25;
 	double num2 = 5;
@@ -40,6 +41,16 @@ public class TestCalculadora {
 	void testeDividir() {
 		resultadoEsperado = num1 / num2;
 		assertEquals(resultadoEsperado, calc.dividir(num1, num2));
+	}
+	
+	@Test
+	void testeDividirPorZero1() {
+		assertThrows(ArithmeticException.class, () -> calc.dividir(0, num2));
+	}
+	
+	@Test
+	void testeDividirPorZero2() {
+		assertThrows(ArithmeticException.class, () -> calc.dividir(num1, 0));
 	}
 	
 	@Test
